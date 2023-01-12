@@ -1,18 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { Container, Col, Row } from "react-bootstrap";
 import logo from "../images/logo.png";
-import { Link } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
-import { searchMovie } from "../redux/actions/moviesAction";
-import { getAllMovie } from "../redux/actions/moviesAction";
+import { useDispatch } from "react-redux";
+import { GlobalGetAllMovie } from "../redux/actions/moviesAction";
+import { SEARCHAPI, MOVIEAPI } from "../redux/types/moviesType";
 
 const NavBar = () => {
   const dispatch = useDispatch();
   const onSearch = (word) => {
     if (word === "") {
-      dispatch(getAllMovie());
+      dispatch(GlobalGetAllMovie(MOVIEAPI));
     } else {
-      dispatch(searchMovie(word));
+      dispatch(GlobalGetAllMovie(SEARCHAPI + word));
     }
   };
 

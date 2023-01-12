@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { Col, Row } from "react-bootstrap";
 import { Link, useParams } from "react-router-dom";
 import notFound from "../images/error.svg";
-
 import axios from "axios";
 const MovieDetails = () => {
   const param = useParams();
