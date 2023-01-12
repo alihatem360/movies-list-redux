@@ -8,21 +8,10 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { getAllMovie } from "./redux/actions/moviesAction";
 function App() {
-  const [movies, setMovies] = useState([]);
   const [pageCount, setpageCount] = useState(0);
+  const [movies, setMovies] = useState([]);
 
-  // use dispatch
-  const dispatch = useDispatch();
-  //get all movies by axios
-  const getAllMovies = async () => {
-    const res = await axios.get(
-      "https://api.themoviedb.org/3/movie/popular?api_key=52ef927bbeb21980cd91386a29403c78&language=ar"
-    );
-    setMovies(res.data.results);
-    setpageCount(res.data.total_pages);
-  };
-
-  //get current page
+  // get all page
   const getPage = async (page) => {
     const res = await axios.get(
       `https://api.themoviedb.org/3/movie/popular?api_key=52ef927bbeb21980cd91386a29403c78&language=ar&page=${page}`
@@ -31,15 +20,9 @@ function App() {
     setpageCount(res.data.total_pages);
   };
 
-  useEffect(() => {
-    getAllMovies();
-    dispatch(getAllMovie());
-  }, []);
-
   //to search in api
   const search = async (word) => {
     if (word === "") {
-      getAllMovies();
     } else {
       const res = await axios.get(
         `https://api.themoviedb.org/3/search/movie?api_key=52ef927bbeb21980cd91386a29403c78&query=${word}&language=ar`
@@ -56,13 +39,7 @@ function App() {
           <Routes>
             <Route
               path="/"
-              element={
-                <MoviesList
-                  movies={movies}
-                  getPage={getPage}
-                  pageCount={pageCount}
-                />
-              }
+              element={<MoviesList getPage={getPage} pageCount={pageCount} />}
             />
 
             <Route path="/movie/:id" element={<MovieDetails />} />

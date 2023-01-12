@@ -1,16 +1,35 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Row, Card, Col } from "react-bootstrap";
 import CardMovie from "./CardMovie";
-import PaginationComponent from './Pagination'
-const MoviesList = ({ movies, getPage, pageCount }) => {
+import PaginationComponent from "./Pagination";
+import { useSelector, useDispatch } from "react-redux";
+import { getAllMovie } from "../redux/actions/moviesAction";
+
+const MoviesList = ({ getPage, pageCount }) => {
+  const [movies, setMovies] = useState([]);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getAllMovie());
+  }, []);
+
+  const moviesState = useSelector((state) => state.movies);
+  useEffect(() => {
+    setMovies(moviesState);
+  }, [moviesState]);
+
   return (
     <Row className="mt-3">
-      {movies.length >= 1 ? (movies.map((mov) => {
-        return (<CardMovie key={mov.id} mov={mov} />)
-      })) : <h2 className="text-center p-5">لا يوجد افلام...</h2>}
+      {movies.length >= 1 ? (
+        movies.map((mov) => {
+          return <CardMovie key={mov.id} mov={mov} />;
+        })
+      ) : (
+        <h2 className="text-center p-5">لا يوجد افلام...</h2>
+      )}
 
-      {movies.length >= 1 ? (<PaginationComponent getPage={getPage} pageCount={pageCount} />) : null}
-
+      {movies.length >= 1 ? (
+        <PaginationComponent getPage={getPage} pageCount={pageCount} />
+      ) : null}
     </Row>
   );
 };
