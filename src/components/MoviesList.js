@@ -5,17 +5,13 @@ import PaginationComponent from "./Pagination";
 import { useSelector, useDispatch } from "react-redux";
 import { getAllMovie } from "../redux/actions/moviesAction";
 
-const MoviesList = ({ getPage, pageCount }) => {
-  const [movies, setMovies] = useState([]);
+const MoviesList = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getAllMovie());
   }, []);
 
-  const moviesState = useSelector((state) => state.movies);
-  useEffect(() => {
-    setMovies(moviesState);
-  }, [moviesState]);
+  const movies = useSelector((state) => state.movies);
 
   return (
     <Row className="mt-3">
@@ -27,9 +23,7 @@ const MoviesList = ({ getPage, pageCount }) => {
         <h2 className="text-center p-5">لا يوجد افلام...</h2>
       )}
 
-      {movies.length >= 1 ? (
-        <PaginationComponent getPage={getPage} pageCount={pageCount} />
-      ) : null}
+      {movies.length >= 1 ? <PaginationComponent /> : null}
     </Row>
   );
 };

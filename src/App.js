@@ -20,27 +20,13 @@ function App() {
     setpageCount(res.data.total_pages);
   };
 
-  //to search in api
-  const search = async (word) => {
-    if (word === "") {
-    } else {
-      const res = await axios.get(
-        `https://api.themoviedb.org/3/search/movie?api_key=52ef927bbeb21980cd91386a29403c78&query=${word}&language=ar`
-      );
-      setMovies(res.data.results);
-      setpageCount(res.data.total_pages);
-    }
-  };
   return (
     <div className="font color-body ">
-      <NavBar search={search} />
+      <NavBar />
       <Container>
         <BrowserRouter>
           <Routes>
-            <Route
-              path="/"
-              element={<MoviesList getPage={getPage} pageCount={pageCount} />}
-            />
+            <Route path="/" element={<MoviesList />} />
 
             <Route path="/movie/:id" element={<MovieDetails />} />
           </Routes>
