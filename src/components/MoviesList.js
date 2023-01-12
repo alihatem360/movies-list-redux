@@ -3,12 +3,13 @@ import { Row, Card, Col } from "react-bootstrap";
 import CardMovie from "./CardMovie";
 import PaginationComponent from "./Pagination";
 import { useSelector, useDispatch } from "react-redux";
-import { getAllMovie } from "../redux/actions/moviesAction";
+import { getAllMovie, GlobalGetAllMovie } from "../redux/actions/moviesAction";
+import { MOVIEAPI } from "../redux/types/moviesType";
 
 const MoviesList = () => {
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(getAllMovie());
+    dispatch(GlobalGetAllMovie(MOVIEAPI));
   }, []);
 
   const movies = useSelector((state) => state.movies);

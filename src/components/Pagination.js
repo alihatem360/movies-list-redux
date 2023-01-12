@@ -2,7 +2,8 @@ import React, { useEffect, useState } from "react";
 import { Pagination } from "react-bootstrap";
 import ReactPaginate from "react-paginate";
 import { useDispatch, useSelector } from "react-redux";
-import { getPage } from "../redux/actions/moviesAction";
+import { GlobalGetAllMovie } from "../redux/actions/moviesAction";
+import { PAGEURL } from "../redux/types/moviesType";
 const PaginationComponent = () => {
   const dispatch = useDispatch();
 
@@ -10,7 +11,7 @@ const PaginationComponent = () => {
 
   const handlePageClick = (data) => {
     console.log(data.selected + 1);
-    dispatch(getPage(data.selected + 1));
+    dispatch(GlobalGetAllMovie(PAGEURL + data.selected + 1));
   };
 
   return (

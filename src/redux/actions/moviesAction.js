@@ -8,9 +8,9 @@ import {
 } from "../types/moviesType";
 import axios from "axios";
 
-export const getAllMovie = (data) => {
+export const GlobalGetAllMovie = (url) => {
   return async (dispatch) => {
-    const res = await axios.get(MOVIEAPI);
+    const res = await axios.get(url);
     dispatch({
       type: ALLMOVIES,
       data: res.data.results,
@@ -19,27 +19,38 @@ export const getAllMovie = (data) => {
   };
 };
 
-export const searchMovie = (word) => {
-  return async (dispatch) => {
-    const res = await axios.get(` ${SEARCHAPI}&query=${word} `);
-    dispatch({
-      type: SEARCHMOVIE,
-      data: res.data.results,
-      pages: res.data.total_pages,
-    });
-  };
-};
+// export const getAllMovie = () => {
+//   return async (dispatch) => {
+//     const res = await axios.get(MOVIEAPI);
+//     dispatch({
+//       type: ALLMOVIES,
+//       data: res.data.results,
+//       pages: res.data.total_pages,
+//     });
+//   };
+// };
 
-export const getPage = (page) => {
-  return async (dispatch) => {
-    const res = await axios.get(` ${PAGEURL}&page=${page} `);
-    dispatch({
-      type: ALLMOVIES,
-      data: res.data.results,
-      pages: res.data.total_pages,
-    });
-  };
-};
+// export const searchMovie = (word) => {
+//   return async (dispatch) => {
+//     const res = await axios.get(` ${SEARCHAPI}${word} `);
+//     dispatch({
+//       type: SEARCHMOVIE,
+//       data: res.data.results,
+//       pages: res.data.total_pages,
+//     });
+//   };
+// };
+
+// export const getPage = (page) => {
+//   return async (dispatch) => {
+//     const res = await axios.get(` ${PAGEURL}${page} `);
+//     dispatch({
+//       type: ALLMOVIES,
+//       data: res.data.results,
+//       pages: res.data.total_pages,
+//     });
+//   };
+// };
 
 export const getMovieDetails = (id) => {
   return async (dispatch) => {
