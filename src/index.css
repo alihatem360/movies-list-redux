@@ -1,14 +1,23 @@
+:root {
+  --body-background-color: #3c4048;
+  --nave-background-color: #3f3b6c;
+  --card-detalis-background-color: #b2b2b2;
+}
 body {
   margin: 0;
 }
+html {
+  background-color: var(--body-background-color);
+}
 .color-body {
-  background-color: white;
+  background-color: var(--body-background-color);
   height: 100vh;
 }
+
 .nav-style {
   height: 90px;
   width: 1440px;
-  background-color: #b45b35;
+  background-color: var(--nave-background-color);
 }
 
 .logo {
@@ -93,12 +102,12 @@ body {
 .card-detalis {
   height: 370px;
   border-radius: 20px;
-  background-color: #f8f8f8;
+  background-color: var(--card-detalis-background-color);
 }
 .card-story {
   height: 300px;
   border-radius: 20px;
-  background-color: #f8f8f8;
+  background-color: var(--card-detalis-background-color);
 }
 .img-movie {
   height: 360px;
@@ -131,4 +140,12 @@ body {
   line-height: 49px;
 }
 
+.page-item,
+.page-link {
+  background-color: var(--nave-background-color) !important;
+  color: white !important;
+}
 
+.pagination {
+  background-color: var(--body-background-color) !important;
+}
